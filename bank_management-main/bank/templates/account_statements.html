@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Statements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'usr_navbar.html' with user_id=user_id %}
+    <h1>Account Statements</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Action</th>
+                <th>Credit</th>
+                <th>Debit</th>
+                <th>Balance</th>
+                <th>Other</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.transaction_id }}</td>
+                <td>{{ transaction.action }}</td>
+                <td>{{ transaction.credit }}</td>
+                <td>{{ transaction.debit }}</td>
+                <td>{{ transaction.balance }}</td>
+                <td>{{ transaction.other }}</td>
+                <td>{{ transaction.date }}</td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+    <div style="text-align: center;">
+        <form method="get" action="{% url 'generate_pdf' user_id=user_id%}">
+            <button type="submit">Print</button>
+        </form>
+    </div>
+</body>
+{% include 'footer.html' %}
+</html>

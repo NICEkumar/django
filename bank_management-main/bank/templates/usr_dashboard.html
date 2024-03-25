@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Your Bank Name</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    {% include 'usr_navbar.html' with user_id=user_id %}
+    <div class="container mt-4">
+        {% block content %}
+        <h1>Welcome, {{ user }}!</h1>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Account Summary</h4>
+                            <p class="card-text">View your account summary here.</p>
+                            <a href="{% url 'usr_accounts' user_id=user_id %}" class="btn btn-primary">Go to Account
+                                Summary</a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Check Summary</h4>
+                            <p class="card-text">Check your transaction summary.</p>
+                            <a href="{% url 'account_statements' user_id=user_id %}" class="btn btn-info">Check
+                                Summary</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+</body>
+{% include 'footer.html' %}

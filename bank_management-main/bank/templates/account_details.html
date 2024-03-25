@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .card {
+            border: 1px solid #480404;
+            border-radius: 5px;
+        }
+        .card-title {
+            background-color: #0c549c;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    {% include 'mgr_navbar.html' with mgr_id=mgr_id%}
+
+    <div class="container mt-4">
+        <h1>User Details</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ account.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ account.email }}</td>
+                    </tr>
+                <tr>
+                        <th>City</th>
+                        <td>{{ account.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ account.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Account Number</th>
+                        <td>{{ account.accountNo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Branch</th>
+                        <td>{{ account.branch }}</td>
+                    </tr>
+                    <tr>
+                        <th>Account Type</th>
+                        <td>{{ account.accountType }}</td>
+                    </tr>
+                    <tr>
+                        <th>Balance</th>
+                        <td>{{ account.balance }}</td>
+                    </tr>
+                </table>
+                <h5 class="card-title"></h5>
+                <a href="{% url 'accounts' mgr_id=mgr_id %}" class="btn btn-primary">Done</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

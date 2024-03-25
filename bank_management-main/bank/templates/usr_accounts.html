@@ -1,0 +1,77 @@
+{% block content %}
+{% include 'usr_navbar.html' %}
+
+<div class="container mt-4">
+    <h1>Accounts Detail</h1>
+    <h2>User ID: {{ user_id }}</h2>
+
+    <div class="row">
+        {% for account in user_accounts %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Account Number: {{ account.accountNo }}
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Email:</strong> {{ account.email }}</li>
+                        <li class="list-group-item"><strong>Name:</strong> {{ account.name }}</li>
+                        <li class="list-group-item"><strong>Balance:</strong> {{ account.balance }}</li>
+                        <li class="list-group-item"><strong>Number:</strong> {{ account.number }}</li>
+                        <li class="list-group-item"><strong>City:</strong> {{ account.city }}</li>
+                        <li class="list-group-item"><strong>Address:</strong> {{ account.address }}</li>
+                        <li class="list-group-item"><strong>Source:</strong> {{ account.source }}</li>
+                        <li class="list-group-item"><strong>Branch:</strong> {{ account.branch }}</li>
+                        <li class="list-group-item"><strong>Account Type:</strong> {{ account.accountType }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container mt-4" >
+    <h1>Account Creation Request</h1>
+    {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form method="post" action="{% url 'create_account_request' user_id=user_id%}" class="account-creation-form">
+        {% csrf_token %}
+        <input type="hidden" name="user_id" value="{{ user_id }}">
+        <label for="account_type">Select Account Type:</label>
+        <select name="account_type" id="account_type" class="form-control">
+            <option value="savings">Savings Account</option>
+            <option value="current">Current Account</option>
+            <option value="salary">Salary Account</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Request Account Creation</button>
+    </form>
+</div>
+
+<style>
+    .account-creation-form {
+        max-width: 400px;
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .account-creation-form label {
+        font-weight: bold;
+    }
+
+    .account-creation-form select,
+    .account-creation-form button {
+        margin-top: 10px;
+    }
+</style>
+
+{% endblock %}
+{% include 'footer.html' %}

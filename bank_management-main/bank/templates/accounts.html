@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accounts</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            vertical-align: top;
+            border-color: #dee2e6;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    {% include 'mgr_navbar.html' with user_id=user_id accountNo=accountNo%}
+    <div class="container mt-4">
+        <h1>Accounts</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Balance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for account in accounts %}
+                <tr>
+                    <td>{{ account.accountNo }}</td>
+                    <td>{{ account.name }}</td>
+                    <td>{{ account.accountType }}</td>
+                    <td>{{ account.balance }}</td>
+                    <td><a href="{% url 'account_details'  accountNo=account.accountNo mgr_id=mgr_id %}" class="btn btn-primary">View More</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

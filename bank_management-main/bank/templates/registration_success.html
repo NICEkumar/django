@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Successful</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    .card {
+        margin-top: 250px;
+        padding: 2px;
+        border-color: black;
+        border-width: 2px;
+    }
+
+    .card-header {
+        background-color: gray;
+    }
+
+    .card-body {
+        background-color: skyblue;
+    }
+    
+</style>
+<body style="background-color: white;">
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Registration Successful</h3>
+            </div>
+            <div class="card-body">
+                <p class="text-center">Thank you for registering with our banking system.</p>
+                <p class="text-center">Your UserID is: <strong>{{ user_id }}</strong></p>
+                <p class="text-center">Please <a href="{% url 'login' %}" class="text-white font-weight-bold">login</a> to access your account.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
